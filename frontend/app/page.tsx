@@ -177,9 +177,8 @@ export default function Home() {
           fastest-growing unicorn startup in three years.
         </p>
         <p>
-          Currently living in Toronto. In my free time I work on Maplestamps and
-          chip away at Project Euler. I take jobs I find interesting and learn as
-          I go.
+          Currently living in Toronto. In my free time I read, work on Maplestamps and
+          chip away at Project Euler.
         </p>
         <p>I enjoy history, literature, and math. Please send book recommendations.</p>
         <p className="resume-line">
