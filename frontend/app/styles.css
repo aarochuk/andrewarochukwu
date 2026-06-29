@@ -1,0 +1,313 @@
+:root {
+  --ink: #141414;
+  --dim: #9a9a9a;
+  --faint: #c8c8c8;
+  --rule: #e6e6e6;
+  --accent: #1f8f4e;        /* restrained terminal green, used sparingly */
+  --accent-soft: #eef6f0;
+  --mono: var(--font-geist-mono), "SF Mono", ui-monospace, "Cascadia Mono",
+    Menlo, Consolas, monospace;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 10vh 24px 16vh;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: clamp(0.78rem, 0.62rem + 0.7vw, 0.9rem);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  overflow-wrap: break-word;
+}
+
+/* ---------------- command lines ---------------- */
+.cmd-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  font-size: 0.86em;
+  margin-bottom: 0.6em;
+  overflow-wrap: break-word;
+}
+
+.prompt {
+  color: var(--accent);
+  white-space: pre-wrap;
+}
+
+.cmd {
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 1px;
+  background: var(--ink);
+  transform: translateY(0.16em);
+  animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* ---------------- reveal after typing ---------------- */
+.reveal-on-done {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.reveal-on-done.shown {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* ---------------- intro ---------------- */
+.intro {
+  margin-bottom: 2.8em;
+}
+
+.name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0.4em 0 0;
+}
+
+.meta {
+  color: var(--dim);
+  font-size: 0.8rem;
+  margin: 0.2em 0 0;
+}
+
+/* ---------------- about ---------------- */
+.about {
+  margin-bottom: 3em;
+  border-left: 2px solid var(--rule);
+  padding-left: 1.1em;
+}
+
+.about p {
+  margin: 0 0 0.7em;
+  max-width: 60ch;
+}
+
+.about p:last-child {
+  margin-bottom: 0;
+}
+
+.contact {
+  margin-top: 1em !important;
+  font-size: 0.93em;
+}
+
+/* ---------------- resume download ---------------- */
+.resume-line {
+  margin-top: 1em !important;
+  font-size: 0.9em;
+}
+
+.comment {
+  color: var(--dim);
+}
+
+.resume-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+  color: var(--ink);
+  text-decoration: none;
+  padding: 0.18em 0.55em;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.resume-prompt {
+  color: var(--accent);
+}
+
+.resume-arrow {
+  font-size: 0.95em;
+  transition: transform 0.2s ease;
+}
+
+.resume-link:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.resume-link:hover .resume-arrow {
+  transform: translateY(2px);
+}
+
+.resume-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sep {
+  color: var(--faint);
+  margin: 0 0.55em;
+}
+
+.link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--faint);
+  overflow-wrap: anywhere;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------------- blocks ---------------- */
+.block {
+  margin-bottom: 3em;
+}
+
+.hint {
+  color: var(--dim);
+  font-size: 0.78rem;
+  margin: -0.2em 0 0.9em;
+}
+
+/* ---------------- entries ---------------- */
+.entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entry {
+  border-top: 1px solid var(--rule);
+}
+
+.entry:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.entry-row {
+  display: grid;
+  grid-template-columns: 1.4em 6.2em minmax(0, 1fr);
+  column-gap: 0.4em;
+  align-items: baseline;
+  text-align: left;
+  appearance: none;
+  background: none;
+  border: none;
+  font: inherit;
+  color: var(--ink);
+  /* negative inline margins make the hover background bleed to the full row width */
+  padding: 0.7em 0.6em;
+  margin-inline: -0.6em;
+  width: calc(100% + 1.2em);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+button.entry-row:hover {
+  background: var(--accent-soft);
+}
+
+.caret {
+  color: var(--accent);
+  font-size: 0.8em;
+  transition: transform 0.2s ease;
+}
+
+.caret.dim {
+  color: var(--faint);
+}
+
+.entry-row.is-open .caret {
+  transform: translateX(1px);
+}
+
+.year {
+  color: var(--dim);
+  font-size: 0.9em;
+}
+
+.entry-name {
+  color: var(--ink);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.entry-row.is-open .entry-name {
+  color: var(--accent);
+}
+
+.entry.static .entry-row {
+  cursor: default;
+}
+
+/* ---------------- expandable blob ---------------- */
+.blob {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.blob.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.blob > p {
+  overflow: hidden;
+  margin: 0;
+  padding: 0 0 0.95em 3.6em;
+  max-width: 64ch;
+  color: #4d4d4d;
+  font-size: 0.85rem;
+}
+
+.blob-mark {
+  color: var(--accent);
+}
+
+/* ---------------- focus + responsive + motion ---------------- */
+.entry-row:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (max-width: 560px) {
+  .page {
+    padding: 7vh 18px 12vh;
+  }
+  .entry-row {
+    grid-template-columns: 1.3em minmax(0, 1fr);
+    grid-template-areas:
+      "caret name"
+      ". year";
+    row-gap: 0.15em;
+  }
+  .caret { grid-area: caret; }
+  .entry-name { grid-area: name; }
+  .year { grid-area: year; font-size: 0.76em; }
+  .blob > p { padding-left: 1.5em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-done { opacity: 1; transform: none; pointer-events: auto; }
+  .cursor { animation: none; }
+  .blob, .entry-row, .caret { transition: none; }
+}
